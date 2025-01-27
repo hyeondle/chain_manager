@@ -3,6 +3,7 @@
 export default function Style_Entry() {
     const style = document.createElement('style');
     style.type = 'text/css';
+    document.head.appendChild(style);
     style.innerHTML = `
     .Entry {
         width: 1440px;
@@ -70,5 +71,4 @@ export default function Style_Entry() {
         background-color: #d8f2ff;
     }
     `;
-    document.head.appendChild(style);
-}   
+}
