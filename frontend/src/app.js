@@ -4,22 +4,31 @@ import Router from "./routers/router.js";
 
 class app {
     constructor() {
-        this.state = {
+        this.state = JSON.parse(sessionStorage.getItem("state")) || {
             locate: window.location.pathname,
             login: parseInt(sessionStorage.getItem("login")) || 0,
             authed: 0,
             visitor: 1,
         };
 
+        this.state = new Proxy(this.state, {
+            set: (target, key, value) => {
+                target[key] = value;
+
+                sessionStorage.setItem("state", JSON.stringify(target));
+                return true;
+            },
+        });
+
         this.root = document.querySelector('.app');
         this.common = document.querySelector('.common');
         this.page = document.querySelector('.page');
 
-        const ObjectForDI = { 
-            $parent: this.root, 
+        const ObjectForDI = {
+            $parent: this.root,
             $common: this.common,
             $page: this.page,
-            setstate: this.setState.bind(this), 
+            setstate: this.setState.bind(this),
             state: this.state,
             router: null
         };
@@ -37,8 +46,7 @@ class app {
     }
 
     setState(newState) {
-        this.state = { ...this.state, ...newState };
-        sessionStorage.setItem("login", this.state.login);
+        Object.assign(this.state, newState);
     }
 
     historyRouterPush(locate) {
