@@ -23,6 +23,8 @@ export default class Login extends Component {
 			backButton.addEventListener("click", () => this.router.navigate("/entry"));
 		}
 
+		// 2025/01/25
+		// 로그인 기능 구현하고 연결할 것
 		const confirmButton = this.$page.querySelector("#confirm");
 		if (confirmButton) {
 			confirmButton.addEventListener("click", () => {
@@ -35,7 +37,7 @@ export default class Login extends Component {
 					this.state.authed = 2;
 					this.router.navigate("/main");
 				} else {
-					this.state.authed = 2;
+					this.state.authed = 0;
 				}
 				
 			});

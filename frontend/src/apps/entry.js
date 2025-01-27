@@ -1,4 +1,4 @@
-// src/apps/login.js
+// src/apps/entry.js
 
 import Component from "../core/component.js";
 import Style_Entry from "../styles/style_entry.js";
@@ -6,10 +6,6 @@ import Style_Entry from "../styles/style_entry.js";
 export default class Entry extends Component {
     constructor(ObjectForDI) {
         super(ObjectForDI);
-
-        if (ObjectForDI.state.authed !== 0) {
-            this.router.navigate("/main");
-        }
     }
 
     template() {
@@ -43,6 +39,12 @@ export default class Entry extends Component {
 
     async renderSequnce(state) {
         this.state = state;
+
+        if (this.state.authed !== 0) {
+            this.router.navigate("/main");
+            return;
+        }
+
         this.htmlContentCommon = await this.init_common();
         this.htmlContent = await this.init();
         this.#render();
