@@ -33,7 +33,7 @@ class app {
             $parent: this.root,
             $common: this.common,
             $page: this.page,
-            setstate: this.setState.bind(this),
+            // setstate: this.setState.bind(this),
             state: this.state,
             router: null
         };
@@ -54,9 +54,9 @@ class app {
         this.initPopStateEvent();
     }
 
-    setState(newState) {
-        Object.assign(this.state, newState);
-    }
+    // setState(newState) {
+    //     Object.assign(this.state, newState);
+    // }
 
     historyRouterPush(locate) {
         if (window.location.pathname !== locate) {
