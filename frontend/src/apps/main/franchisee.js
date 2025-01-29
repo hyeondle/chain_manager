@@ -2,6 +2,7 @@
 
 import Component from "../../core/component.js";
 import Style_EE from "../../styles/style_ee.js";
+import eeT from "../../styles/lang/franchisee.js"
 
 export default class Franchisee extends Component {
 
@@ -20,7 +21,26 @@ export default class Franchisee extends Component {
 	}
 
 	setEvent() {
-
+		const buttonArrange = this.$page.querySelector("#arrange");
+		if (buttonArrange) {
+			buttonArrange.addEventListener("click", () => this.router.navigate("/franchisee/arrange"));
+		}
+		const buttonMenu = this.$page.querySelector("#menu");
+		if (buttonMenu) {
+			buttonMenu.addEventListener("click", () => this.router.navigate("/franchisee/menu"));
+		}
+		const buttonStock = this.$page.querySelector("#stock");
+		if (buttonStock) {
+			buttonStock.addEventListener("click", () => this.router.navigate("/franchisee/stock"));
+		}
+		const buttonStatics = this.$page.querySelector("#statics");
+		if (buttonStatics) {
+			buttonStatics.addEventListener("click", () => this.router.navigate("/franchisee/statics"));
+		}
+		const buttonSetting = this.$page.querySelector("#setting");
+		if (buttonSetting) {
+			buttonSetting.addEventListener("click", () => this.router.navigate("/franchisee/setting"));
+		}
 	}
 
 	async renderSequnce(state) {
@@ -49,8 +69,41 @@ export default class Franchisee extends Component {
 	}
 
 	async addText() {
-		// 정보 받아와서 글씨 갱신
-		return ;
+		const buttonArrange = this.$page.querySelector("#arrange");
+		if (buttonArrange) {
+			buttonArrange.innerHTML = eeT.arrange[this.state.lang];
+			buttonArrange.style.textAlign = "center";
+            buttonArrange.style.fontSize = "24px";
+            buttonArrange.style.fontWeight = "bold";
+		}
+		const buttonMenu = this.$page.querySelector("#menu");
+		if (buttonMenu) {
+			buttonMenu.innerHTML = eeT.menu[this.state.lang];
+			buttonMenu.style.textAlign = "center";
+			buttonMenu.style.fontSize = "24px";
+			buttonMenu.style.fontWeight = "bold";
+		}
+		const buttonStock = this.$page.querySelector("#stock");
+		if (buttonStock) {
+			buttonStock.innerHTML = eeT.stock[this.state.lang];
+			buttonStock.style.textAlign = "center";
+			buttonStock.style.fontSize = "24px";
+			buttonStock.style.fontWeight = "bold";
+		}
+		const buttonStatics = this.$page.querySelector("#statics");
+		if (buttonStatics) {
+			buttonStatics.innerHTML = eeT.statics[this.state.lang];
+			buttonStatics.style.textAlign = "center";
+			buttonStatics.style.fontSize = "24px";
+			buttonStatics.style.fontWeight = "bold";
+		}
+		const buttonSetting = this.$page.querySelector("#setting");
+		if (buttonSetting) {
+			buttonSetting.innerHTML = eeT.setting[this.state.lang];
+			buttonSetting.style.textAlign = "center";
+			buttonSetting.style.fontSize = "24px";
+			buttonSetting.style.fontWeight = "bold";
+		}
 	}
 
 	async addImage() {
