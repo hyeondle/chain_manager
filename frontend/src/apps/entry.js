@@ -16,10 +16,6 @@ export default class Entry extends Component {
     #render() {
         const template = this.template();
 
-        if (this.$common) {
-            this.$common.innerHTML = this.htmlContentCommon;
-        }
-
         if (this.$page) {
             this.$page.innerHTML = template;
         }
@@ -45,7 +41,6 @@ export default class Entry extends Component {
             return;
         }
 
-        this.htmlContentCommon = await this.init_common();
         this.htmlContent = await this.init();
         this.#render();
         this.setEvent();
@@ -56,22 +51,6 @@ export default class Entry extends Component {
     ///
     /// func
     ///
-
-    async init_common() {
-        try {
-            const response = await fetch("/src/pages/entry_common.html");
-            if (!response.ok) {
-                throw new Error("Failed to load entry.html");
-            }
-
-            const htmlContent = await response.text();
-
-            return htmlContent;
-        } catch (error) {
-            console.error(error);
-            this.$parent.innerHTML = `<p>Error loading page</p>`;
-        }
-    }
 
     async init() {
         try {

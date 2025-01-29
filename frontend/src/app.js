@@ -1,6 +1,7 @@
 // src/app.js
 
 import Router from "./routers/router.js";
+import Common from "./apps/common.js";
 
 class app {
     constructor() {
@@ -9,12 +10,16 @@ class app {
             login: parseInt(sessionStorage.getItem("login")) || 0,
             authed: 0,
             visitor: 1,
+            lang: "ko",
         };
 
         this.state = new Proxy(this.state, {
             set: (target, key, value) => {
                 target[key] = value;
 
+                if (key === "lang") {
+                    this.router.navigate(this.state.locate);
+                }
                 sessionStorage.setItem("state", JSON.stringify(target));
                 return true;
             },
@@ -39,6 +44,10 @@ class app {
         );
 
         ObjectForDI.router = this.router;
+
+        this.commonComponent = new Common(ObjectForDI);
+        this.commonComponent.renderSequnce(this.state);
+        ObjectForDI.$common = this.commonComponent;
 
         this.router.navigate('/entry');
 
