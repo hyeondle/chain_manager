@@ -1,10 +1,17 @@
 // src/styles/style_entry.js
 
 export default function Style_Entry() {
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    document.head.appendChild(style);
-    style.innerHTML = `
+    let style;
+
+	style = document.querySelector('style');
+
+	if (!style) {
+		style = document.createElement('style');
+		style.type = 'text/css';
+		document.head.appendChild(style);
+	}
+
+    style.innerHTML += `
     .Entry {
         width: 1440px;
         height: 900px;

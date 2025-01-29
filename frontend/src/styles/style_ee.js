@@ -8,9 +8,8 @@ export default function Style_EE() {
 	if (!style) {
 		style = document.createElement('style');
 		style.type = 'text/css';
+		document.head.appendChild(style);
 	}
-
-	document.head.appendChild(style);
 
 	style.innerHTML += `
 	.BSquare {
