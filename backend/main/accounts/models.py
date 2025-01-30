@@ -7,9 +7,9 @@ class BaseUser(AbstractBaseUser):
 	usernumber = models.BigAutoField(primary_key=True) # 유저번호 (자동증가)
 	id = models.CharField(max_length=20, unique=True) # 아이디
 	password = models.CharField(max_length=128) # 비밀번호
-	email = models.EmailField(unique=True) # 이메일
+	email = models.EmailField(unique=True, blank=False, null=False) # 이메일
 	created_at = models.DateTimeField(auto_now_add=True) # 생성일
-	phone_number = models.CharField(max_length=20, unique=True) # 전화번호
+	phone_number = models.CharField(max_length=20, unique=True, blank=False, null=False) # 전화번호
 	region_number = models.CharField(max_length=5) # 지역번호
 
 	objects = UserManager()
@@ -33,7 +33,7 @@ class HeadquartersUser(BaseUser):
 
 # 가맹점주 모델 (Franchisee)
 class FranchiseeUser(BaseUser):
-	company_name = models.CharField(max_length=20) # 회사명
+	company_name = models.CharField(max_length=20, blank=False, null=False) # 회사명
 	referral_code = models.CharField(max_length=6, unique=True) # 색인코드
 
 	def save(self, *args, **kwargs):

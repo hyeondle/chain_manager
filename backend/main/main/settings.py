@@ -77,11 +77,14 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'maindatabase',
+        'USER': 'mainuser',
+        'PASSWORD': 'mainpassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -124,4 +127,49 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.User'
+
+
+# 사용자 세팅
+
+# NINJA SETTINGS
+
+# 현재 csrf를 헤제하였으나, 이후 jwt 토큰을 통해 csrf를 대체할 예정
+NINJA_API_SETTINGS = {
+    "CSRF": False,
+    "AUTHENTICATION": ["django.contrib.auth.backends.ModelBackend"],
+}
+
+
+############
+# accounts #
+############
+
+# Custom User Model
+AUTH_USER_MODEL = 'accounts.FranchiseeUser'
+
+# Password Hashing
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+# SESSION SETTINGS
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False # False: 브라우저 닫아도 세션 유지
+
+###########
+# Statics #
+###########
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
