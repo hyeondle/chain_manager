@@ -1,4 +1,4 @@
-다중 언어 지원은 lang/docs.txt 참고
+다중 언어 지원은 lang/docs_lang.txt 참고
 
 모든 코드는 다음 양식을 따른다.
 
