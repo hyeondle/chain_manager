@@ -1,6 +1,6 @@
 from ninja import ModelSchema, Schema
 
-from .models import User
+from .models import *
 
 # 본사 가입용
 class HeadquartersRegisterRequest(Schema):
