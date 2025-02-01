@@ -19,8 +19,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+from main.apis import api
 
 urlpatterns = [
+    path("api/", api.urls),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
