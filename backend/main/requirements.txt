@@ -1,7 +1,9 @@
-channels[daohne]==4.0.0
 Django==5.0.6
+channels[daphne]==4.0.0
 django-cors-headers==4.5.0
 django-ninja==1.3.0
 psycopg2-binary==2.9.9
 PyJWT==2.9.0
+argon2-cffi>=23.1.0
+argon2-cffi-bindings==21.2.0
 requests
