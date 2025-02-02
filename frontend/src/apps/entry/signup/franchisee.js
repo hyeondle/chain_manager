@@ -18,6 +18,11 @@ export default class Franchisee extends Component {
 	}
 
 	setEvent() {
+		const backButton = this.$page.querySelector("#back");
+		if (backButton) {
+			backButton.addEventListener("click", () => this.router.navigate("/signup"));
+		}
+
 		const confirmButton = this.$page.querySelector("#confirm");
 		if (confirmButton) {
 			confirmButton.addEventListener("click", () => {
@@ -64,6 +69,8 @@ export default class Franchisee extends Component {
 		this.htmlContent = await this.init();
 		this.#render();
 		this.setEvent();
+		this.addText();
+		this.addImage();
 	}
 
 	async init() {
@@ -84,5 +91,15 @@ export default class Franchisee extends Component {
 
 	addText() {
 
+	}
+
+	addImage() {
+		const returnButton = this.$page.querySelector("#back");
+		if (returnButton) {
+			returnButton.style.backgroundImage = "url('/src/static/img/back-button.png')";
+			returnButton.style.backgroundSize = "cover";
+			returnButton.style.backgroundRepeat = "no-repeat";
+			returnButton.style.backgroundPosition = "center";
+		}
 	}
 }

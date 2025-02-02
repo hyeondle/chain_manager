@@ -2,6 +2,7 @@
 
 import Component from "../core/component.js";
 import Style_Entry from "../styles/style_entry.js";
+import eT from "../styles/lang/entry.js";
 
 export default class Entry extends Component {
     constructor(ObjectForDI) {
@@ -71,7 +72,7 @@ export default class Entry extends Component {
     addText() {
         const loginButton = this.$page.querySelector("#login");
         if (loginButton) {
-            loginButton.innerHTML = "Log in";
+            loginButton.innerHTML = eT.login[this.state.lang];
             loginButton.style.textAlign = "center";
             loginButton.style.fontSize = "24px";
             loginButton.style.fontWeight = "bold";
@@ -80,7 +81,7 @@ export default class Entry extends Component {
 
         const signupButton = this.$page.querySelector("#signup");
         if (signupButton) {
-            signupButton.innerHTML = "Sign up";
+            signupButton.innerHTML = eT.signup[this.state.lang];
             signupButton.style.textAlign = "center";
             signupButton.style.fontSize = "24px";
             signupButton.style.fontWeight = "bold";

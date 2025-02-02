@@ -19,6 +19,11 @@ export default class Signup extends Component {
 	}
 
 	setEvent() {
+		const backButton = this.$page.querySelector("#back");
+		if (backButton) {
+			backButton.addEventListener("click", () => this.router.navigate("/entry"));
+		}
+
 		const headquarterButton = this.$page.querySelector("#headquarter");
 		if (headquarterButton) {
 			headquarterButton.addEventListener("click", () => this.router.navigate("/signup/headquarter"));
@@ -41,6 +46,7 @@ export default class Signup extends Component {
 		this.#render();
 		this.setEvent();
 		this.addText();
+		this.addImage();
 	}
 
 	async init() {
@@ -82,6 +88,16 @@ export default class Signup extends Component {
 			individualButton.style.textAlign = "center";
 			individualButton.style.fontSize = "24px";
 			individualButton.style.fontWeight = "bold";
+		}
+	}
+
+	addImage() {
+		const returnButton = this.$page.querySelector("#back");
+		if (returnButton) {
+			returnButton.style.backgroundImage = "url('/src/static/img/back-button.png')";
+			returnButton.style.backgroundSize = "cover";
+			returnButton.style.backgroundRepeat = "no-repeat";
+			returnButton.style.backgroundPosition = "center";
 		}
 	}
 }
